@@ -29,6 +29,7 @@ def get_confirmation_code(request):
     message = f'Ваш {mail_subject.lower()}: {confirmation_code}'
     sender_email = settings.DEFAULT_FROM_EMAIL
     recipient_email = email
+
     send_mail(
         mail_subject,
         message,
