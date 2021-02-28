@@ -14,6 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class UserEmailSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)
+    username = serializers.CharField()
 
 
 class ConfirmationCodeSerializer(serializers.Serializer):

@@ -29,7 +29,6 @@ def get_confirmation_code(request):
     message = f'Ваш {mail_subject.lower()}: {confirmation_code}'
     sender_email = settings.DEFAULT_FROM_EMAIL
     recipient_email = email
-
     send_mail(
         mail_subject,
         message,
@@ -50,7 +49,7 @@ def get_jwt_token(request):
     user = get_object_or_404(User, email=email)
 
     if default_token_generator.check_token(user, confirmation_code):
-        token = str(AccessToken.for_user(user))
+        token = AccessToken.for_user(user).decode('utf-8')
         return Response({'token': f'{token}'}, status=status.HTTP_200_OK)
 
     resp = {'confirmation_code': 'Неверный код подтверждения'}
